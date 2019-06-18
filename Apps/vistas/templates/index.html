@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>App Vistas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+</head>
+
+<body>
+    <h2>Vistas Json</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <form action="{% url 'reservas_add' %}" method="post">
+                {% csrf_token %}
+                <div class="container">
+                    <p>
+                        <label for="libro">Libro</label>
+                        <input class="form-control" type="text" name="libro" id="libro">
+                    </p>
+
+
+                    <p>
+                        <label for="persona">persona</label>
+                        <input class="form-control" type="text" name="persona" id="persona">
+                    </p>
+                    <input class="btn btn-success" type="submit" value="Grabar">
+                </div>
+            </form>
+        </div>
+
+    </div>
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        Libros();
+        Personas();
+        reservas();
+    });
+
+    const Libros = () => {
+        let slt = '<option value="0">Seleccionar</option>'
+        let str = '';
+        $.ajax({
+            url: 'http://127.0.0.1:8000/vistas/libros/',
+            success: function (datos) {
+                $.each(datos, function (i, item) {
+                    str += '<p>' + item.fields.titulo + '</p>';
+
+                    slt += '<option value="' + item.pk + '">' + item.fields.titulo + '</option>';
+                });
+                $("#libros").html(str);
+                $("#libro").html(slt);
+            }
+        });
+    }
+    const Personas = () => {
+        let str = '';
+        $.ajax({
+            url: 'http://127.0.0.1:8000/vistas/personas/',
+            success: function (datos) {
+                $.each(datos, function (i, item) {
+                    str += '<p>' + item.fields.nombres + '</p>';
+                });
+                $("#personas").html(str);
+            }
+        });
+    }
+    const reservas = () => {
+        let str = '';
+        $.ajax({
+            url: 'http://127.0.0.1:8000/vistas/reservas/',
+            success: function (datos) {
+                $.each(datos, function (i, item) {
+                    str += '<p>' + item.fields.fecha + '</p>';
+                });
+                $("#reservas").html(str);
+            }
+        });
+    }
+</script>
+
+</html>

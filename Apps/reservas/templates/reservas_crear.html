@@ -1,0 +1,21 @@
+{% extends 'rlayout.html' %}
+
+{% block title %}
+Crear
+{% endblock %}
+
+{% block top %}
+<h2>Reservas</h2>
+{% endblock %}
+
+{% block body %}
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p>
+        <input class="btn btn-warning" type="submit" value="Grabar">
+        <a class="btn btn-info" href="{% url 'reservas_listar' %}">Volver</a>
+    </p>
+</form>
+
+{% endblock %}

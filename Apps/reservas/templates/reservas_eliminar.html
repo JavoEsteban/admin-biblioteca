@@ -1,0 +1,23 @@
+{% extends 'rlayout.html' %}
+
+{% block title %}
+Eliminar
+{% endblock %}
+
+
+{% block body %}
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="jumbotron">
+            <h2 class="display-4">Eliminar Reserva</h2>
+      
+        <hr class="my-4">
+        <p>Confirma que desea  eliminar la reserva de : {{ object.libro }}</p>
+        <input class="btn btn-danger" type="submit" value="Eliminar">
+        <a class="btn btn-info" href="{% url 'reservas_listar' %}">Volver</a>
+    </div>
+</form>
+<p>
+    
+</p>
+{% endblock %}

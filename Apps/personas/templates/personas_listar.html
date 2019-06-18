@@ -1,0 +1,45 @@
+{% extends 'playout.html' %}
+
+{% block title %}
+Listar
+{% endblock %}
+
+{% block top %}
+<h2>Personas</h2>
+{% endblock %}
+
+{% block body %}
+<p>
+    <a class="btn btn-success" href="{% url 'personas_crear' %}">Crear</a>
+</p>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr class="table-info">
+            <td>Rut</td>
+            <td>Nombres</td>
+            <td>Apellidos</td>
+            <td>Fono</td>
+            <td>Email</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in object_list %}
+        <tr>
+            <td>{{ item.rut }}</td>
+            <td>{{ item.nombres }}</td>
+            <td>{{ item.apellidos }}</td>
+            <td>{{ item.fono }}</td>
+            <td>{{ item.email }}</td>
+            <td>
+                <a class="btn btn-warning" href="{% url 'personas_editar' pk=item.id %}">Editar</a>
+            </td>
+            <td>
+                <a class="btn btn-danger" href="{% url 'personas_eliminar' pk=item.id %}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

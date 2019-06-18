@@ -1,0 +1,22 @@
+{% extends 'playout.html' %}
+
+{% block title %}
+Editar
+{% endblock %}
+
+{% block top %}
+<h2>Actualizar persona</h2>
+{% endblock %}
+
+{% block body %}
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p>
+        <input class="btn btn-warning" type="submit" value="Grabar">
+    </p>
+</form>
+<p>
+    <a class="btn btn-info" href="{% url 'personas_listar' %}">cancelar</a>
+</p>
+{% endblock %}

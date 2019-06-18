@@ -1,0 +1,39 @@
+{% extends 'rlayout.html' %}
+
+{% block title %}
+Listar
+{% endblock %}
+
+{% block top %}
+<h2>Reservas</h2>
+{% endblock %}
+
+{% block body %}
+<p>
+    <a class="btn btn-success" href="{% url 'reservas_crear' %}">Nueva Reserva</a>
+</p>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr class="table-info">
+            <td>Libro</td>
+            <td>Usuario</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in object_list %}
+        <tr>
+            <td>{{ item.libro }}</td>
+            <td>{{ item.persona }}</td>
+            <td>
+                    <a class="btn btn-warning" href="{% url 'reservas_editar' pk=item.id %}">Editar</a>
+                </td>
+            <td>
+                <a class="btn btn-danger" href="{% url 'reservas_eliminar' pk=item.id %}">Borrar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
